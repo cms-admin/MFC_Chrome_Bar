@@ -71,8 +71,8 @@ chrome.extension.onMessage.addListener(function(data, sender, sendResponse){
 	switch( data.query ){
 	case 'list':
 		chrome.tabs.sendMessage(sender.tab.id, {
-			query: 'list', 
-			suggest: data.suggest, 
+			query: 'list',
+			suggest: data.suggest,
 			body: dictionary.suggest(data.suggest)
 		}, null);
 		//updateContextMenu();
@@ -82,7 +82,7 @@ chrome.extension.onMessage.addListener(function(data, sender, sendResponse){
 	break;
 	case 'newtab':
 		chrome.tabs.create({ 'url' :chrome.extension.getURL('newtab.html') });
-		
+
 		_gaq.push(['_trackEvent', 'newtab', 'clicked']);
 	break;
 	case 'event':
@@ -99,7 +99,7 @@ chrome.extension.onMessage.addListener(function(data, sender, sendResponse){
 		}
 	break;
 	case 'favorites':
-		chrome.bookmarks.getTree(function(tree){ 
+		chrome.bookmarks.getTree(function(tree){
 			chrome.tabs.sendMessage(sender.tab.id, {query: 'favorites', body: tree}, null);
 		});
 	break;
@@ -192,7 +192,7 @@ chrome.contextMenus.onClicked.addListener(function(menuItem, tab){
 		} else {
 			chrome.tabs.create({ 'url': 'chrome://newtab' });
 		}
-		
+
 		_gaq.push(['_trackEvent', 'newtab', 'clicked']);
 	}
 });
